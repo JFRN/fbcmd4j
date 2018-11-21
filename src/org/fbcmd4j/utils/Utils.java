@@ -41,12 +41,6 @@ public class Utils {
 		return props;
 	}
 
-	public static void saveProperties(String folderName, String fileName, Properties props) throws IOException {
-		Path configFile = Paths.get(folderName, fileName);
-		String string = "Generado por org.fbcmd4j.configTokens";
-		props.store(Files.newOutputStream(configFile), string);
-	}
-
 	public static Facebook configFacebook(Properties props) {
 		Facebook fb = new FacebookFactory().getInstance();
 		fb.setOAuthAppId(props.getProperty("oauth.appId"), props.getProperty("oauth.appSecret"));
