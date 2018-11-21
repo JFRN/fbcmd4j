@@ -14,16 +14,16 @@ import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.Post;
 import facebook4j.ResponseList;
+
 // Basado en la actividad 13
 public class Main {
 	static final Logger logger = LogManager.getLogger(Main.class);
 	private static final String CONFIG_DIR = "config";
 	private static final String CONFIG_FILE = "fbcmd4j.properties";
 
-
 	public static void main(String[] args) {
 		logger.info("Iniciando aplicacion");
-		Facebook fb =  null;
+		Facebook fb = null;
 		Properties props = null;
 
 		try {
@@ -32,16 +32,16 @@ public class Main {
 		} catch (Exception ex) {
 			logger.error("No pudimos cargar un archivo de configuracion. Revisalo de nuevo", ex);
 		}
-		
+
 		int option = 1;
 		try {
 			Scanner scan = new Scanner(System.in);
-			while(true) {
+			while (true) {
 				fb = Utils.configFacebook(props);
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append("Cliente para interfaz de linea de comandos para manipular Facebook. Jose Rada 2018\n\n");
+				stringBuilder.append(
+						"Cliente para interfaz de linea de comandos para manipular Facebook. Jose Rada 2018\n\n");
 				stringBuilder.append("Opciones: \n");
-				//stringBuilder.append("(0) Cargar configuración \n");
 				stringBuilder.append("(1) Ver News Feed \n");
 				stringBuilder.append("(2) Ver Wall \n");
 				stringBuilder.append("(3) Publicar estado \n");
@@ -54,8 +54,6 @@ public class Main {
 					scan.nextLine();
 					switch (option) {
 					case 0:
-						//Utils.configTokens(CONFIG_DIR, CONFIG_FILE, props, scan);
-						//props = Utils.loadConfigFile(CONFIG_DIR, CONFIG_FILE);
 						break;
 					case 1:
 						System.out.println("Mostrando NewsFeed...");
@@ -66,7 +64,7 @@ public class Main {
 					case 2:
 						System.out.println("Mostrando Wall...");
 						ResponseList<Post> wall = fb.getPosts();
-						wall.forEach(post -> Utils.printPost(post));	
+						wall.forEach(post -> Utils.printPost(post));
 						askToSaveFile("Wall", wall, scan);
 						break;
 					case 3:
@@ -101,29 +99,30 @@ public class Main {
 			logger.error(e);
 		}
 	}
-	
+
 	public static void askToSaveFile(String fileName, ResponseList<Post> posts, Scanner scan) {
 		System.out.println("Guardar resultados en un archivo de texto? Si/No");
 		String option = scan.nextLine();
-		
+
 		if (option.contains("Si".toUpperCase())) {
 			List<Post> ps = new ArrayList<>();
 			int n = 0;
 
-			while(n <= 0) {
+			while (n <= 0) {
 				try {
 					System.out.println("Cuántos posts deseas guardar?");
-					n = Integer.parseInt(scan.nextLine());					
-			
-					if(n <= 0) {
+					n = Integer.parseInt(scan.nextLine());
+
+					if (n <= 0) {
 						System.out.println("Favor de ingresar un número válido");
 					} else {
-						for(int i = 0; i<n; i++) {
-							if(i>posts.size()-1) break;
+						for (int i = 0; i < n; i++) {
+							if (i > posts.size() - 1)
+								break;
 							ps.add(posts.get(i));
 						}
 					}
-				} catch(NumberFormatException e) {
+				} catch (NumberFormatException e) {
 					logger.error(e);
 				}
 			}
