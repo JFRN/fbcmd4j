@@ -17,7 +17,7 @@
 			<AppenderRef ref="Console" level="error"/>
 			<AppenderRef ref="Logfile" />
 		</Logger>
-		<Logger name="org.fbcmd4j.Utils" level="info">
+		<Logger name="org.fbcmd4j.utils.Utils" level="info">
 			<AppenderRef ref="Logfile" />
 		</Logger>
 	</Loggers>
