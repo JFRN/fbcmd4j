@@ -7,6 +7,12 @@ Cliente de consola para Facebook para propositos escolares.
 
 ¡Listo!
 
+Para crear un JAR.
+Haz clic derecho al proyecto en Eclipse
+Exportar -> Runnable JAR file -> Siguiente -> Siguiente -> Finalizar
+
+¡Listo!
+
 ## Uso
 
 Antes de correr la aplicación, modifica el archivo fbcmd4j.properties, en la carpeta config, agregando tu access token en "oauth.accessToken=", para que este configurado para tu cuenta.
